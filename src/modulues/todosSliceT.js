@@ -7,9 +7,9 @@ export const __getTodos = createAsyncThunk(
   "getTodos",
   async (payload, thunkAPi)=> {
     try {
-      const response = await axios.get(`http://localhost:4002/todos`);
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_KEY}/todos`);
       // const response = await axios.get(`${process.env.REACT_APP_SERVER_KEY}`)
-      console.log(response.data);
+      // console.log(response.data);
       return thunkAPi.fulfillWithValue(response.data);
     }
     catch (error) {
@@ -19,7 +19,32 @@ export const __getTodos = createAsyncThunk(
   }
 );
 
-// ${process.env.REACT_APP_SERVER_KEY}
+// #02 axios.POST ///////////////////////////////////////////////////////////////////////////
+export const __postTodos = createAsyncThunk(
+  "postTodos",
+  async (title) => {
+      await axios.post(`${process.env.REACT_APP_SERVER_KEY}/todos`,title);      
+  }
+)
+
+export const __deleteTodos = createAsyncThunk(
+  "deleteTodos",
+  async (id) => {
+      await axios.delete(`${process.env.REACT_APP_SERVER_KEY}/todos/${id}`);      
+  }
+)
+
+export const __updateTodos = createAsyncThunk(
+  "updateTodos",  
+  async (payload) => {
+    const [id, title] = payload
+    await axios.patch(`${process.env.REACT_APP_SERVER_KEY}/todos/${id}`, {
+      title,
+    });
+  }
+)
+
+
 const initialState = {
   todos: [],
   isLoading: false,

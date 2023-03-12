@@ -1,12 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+// ${process.env.REACT_APP_SERVER_KEY}
 
-const getTodos = async () => {
+// AXIOS.GET 코드 부분  /////////////////////////////////////////////////////////////////
+import axios, { Axios } from "axios";
+export const getTodos = async () => {
   // const  response = await axios.get(`${process.env.REACT_APP_SERVER_KEY}/todos`)
-  const response = await axios.get(`http://localhost:4002/todos`);
-  console.log(response.data)
-
+  const response = await axios.get(`${process.env.REACT_APP_SERVER_KEY}/todos`);
+  // console.log(response.data)
+  return response.data
 }
+
+// AXIOS.POST 코드 부분  /////////////////////////////////////////////////////////////////
+export const addTodo = async (newTodo) => {
+  await axios.post(`${process.env.REACT_APP_SERVER_KEY}/todos`, newTodo)
+}
+
 
 const initialState = {
   todos: [],
