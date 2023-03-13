@@ -7,3 +7,9 @@
 
 
 ## 02 store 중앙저장관리소 생성하기 configStore
+
+## 03 Reactquery 싱크 맞춰주기, db.json 이랑 뷰랑 다를 때, 어떻게 제어할까요? 
+   - invalidateQueries 해당 내용이 바로 이것입니다. 
+   - Reactquery.jsx -> 7번줄에서 불러왔던 db.json 을 무효화 하고 다시 불러옴으로 이 문제는 해결되는데,
+   - invalidateQueries의 인자로 기존의 ('todos')를 무효화 시키키면 다시 실행합니다. 그래서 선언했던 useQuery 가 중요하다고 합니다.
+   - 오호 된다.  

@@ -15,6 +15,21 @@ export const addTodo = async (newTodo) => {
   await axios.post(`${process.env.REACT_APP_SERVER_KEY}/todos`, newTodo)
 }
 
+// AXIOS.DELETE 코드 부분  /////////////////////////////////////////////////////////////////
+export const deleteTodo = async (id) => {
+  await axios.delete(`${process.env.REACT_APP_SERVER_KEY}/todos/${id}`,)
+}
+
+// AXIOS.PATCH 코드 부분  /////////////////////////////////////////////////////////////////
+export const patchTodo = async (payload) => {
+  const [id, title] = payload
+  await axios.patch(`${process.env.REACT_APP_SERVER_KEY}/todos/${id}`, {
+    title,
+  })
+}
+
+
+
 
 const initialState = {
   todos: [],
